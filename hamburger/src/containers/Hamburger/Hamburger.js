@@ -72,15 +72,6 @@ class Hamburger extends Component
 
     render()
     {
-        /*
-        const orderSummaryComponent = this.state.loading ? <Spinner/> : 
-            <OrderSummary 
-                ingredients={this.state.ingredients} 
-                cancel={this.modalHandle} 
-                price={this.state.price} 
-                purchase={this.continuePuchase.bind(this)}
-            />
-        */
        const orderSummaryComponent = this.state.loading ? null : 
             <OrderSummary 
                 ingredients={this.state.ingredients} 
@@ -106,3 +97,4 @@ export default Hamburger
 
 
 //<button disabled={!this.state.purchasable} onClick={()=>{this.modalHandle(true)}}>Acheter</button>
+// purchase={this.continuePuchase.bind(this)}

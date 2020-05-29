@@ -4,6 +4,8 @@ import HamburgerHeader from '../../components/hamburgerFolder/HamburgerHeader/Ha
 import BurgerDrawing from '../../components/hamburgerFolder/HamburgerDrawing/HamburgerDrawing'
 import Ingredients from '../../components/hamburgerFolder/Ingredients/Ingredients'
 
+import Modal from '../../components/UI/Modal/Modal'
+
 
 class Hamburger extends Component
 {
@@ -31,7 +33,7 @@ class Hamburger extends Component
         this.udpateIngredients(updatedState, ingredient, direction) 
         this.updatePrice() 
         this.updateComposition(ingredient.name, direction)
-        //this.udpatePurchasable()  
+        this.udpatePurchasable()  
     }
 
     udpateIngredients = (updatedState, ingredient, direction) => {
@@ -51,10 +53,31 @@ class Hamburger extends Component
         this.setState({ composition : updatedState })
     }
 
+    udpatePurchasable = () => {
+       this.setState(prevState => ({
+           purchasable : prevState.price > 0 ? true : false
+       }))
+    }
+
+    modalHandle = (hide) => { 
+        this.state.purchasable && !hide ? this.setState({purchasing : true}) : this.setState({purchasing : false})
+    }
+
     render()
     {
+        /*
+        const orderSummaryComponent = this.state.loading ? <Spinner/> : 
+            <OrderSummary 
+                ingredients={this.state.ingredients} 
+                cancel={this.modalHandle} 
+                price={this.state.price} 
+                purchase={this.continuePuchase.bind(this)}
+            />
+        */
+
         return(
             <div className="Hamburger">
+                
                 <HamburgerHeader price={this.state.price}/>
                 <BurgerDrawing ingredients={this.state.composition}/>
                 <Ingredients ingredients={this.state.ingredients} changeCount={this.ingredientCountHandler.bind(this)}/>
@@ -64,3 +87,11 @@ class Hamburger extends Component
 }
 
 export default Hamburger 
+
+
+//<button disabled={!this.state.purchasable} onClick={()=>{this.modalHandle(true)}}>Acheter</button>
+/*
+<Modal visible={this.state.purchasing} change={this.modalHandle} >
+                   {orderSummaryComponent}
+                </Modal>
+*/

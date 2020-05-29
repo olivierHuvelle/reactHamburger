@@ -5,7 +5,7 @@ import BurgerDrawing from '../../components/hamburgerFolder/HamburgerDrawing/Ham
 import Ingredients from '../../components/hamburgerFolder/Ingredients/Ingredients'
 
 import Modal from '../../components/UI/Modal/Modal'
-
+import Button from '../../components/UI/Button/Button'
 
 class Hamburger extends Component
 {
@@ -19,7 +19,7 @@ class Hamburger extends Component
         price : 0, 
         composition : [],
         purchasable : false, 
-        purchasing : true, 
+        purchasing : false, 
         loading : false,
     }
 
@@ -88,6 +88,7 @@ class Hamburger extends Component
                 <HamburgerHeader price={this.state.price}/>
                 <BurgerDrawing ingredients={this.state.composition}/>
                 <Ingredients ingredients={this.state.ingredients} changeCount={this.ingredientCountHandler.bind(this)}/>
+                <Button type="Success" disabled={!this.state.purchasable} click={this.purchaseHandler.bind(this)}>Acheter</Button>
             </div>
         )
     }
@@ -97,8 +98,3 @@ export default Hamburger
 
 
 //<button disabled={!this.state.purchasable} onClick={()=>{this.modalHandle(true)}}>Acheter</button>
-/*
-<Modal visible={this.state.purchasing} change={this.modalHandle} >
-                   {orderSummaryComponent}
-                </Modal>
-*/

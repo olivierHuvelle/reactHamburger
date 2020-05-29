@@ -35,3 +35,4 @@ Ingredient.propTypes = {
 }
 
 export default memo(Ingredient)
+

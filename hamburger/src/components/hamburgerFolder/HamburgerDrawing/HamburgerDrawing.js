@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
-import classes from './BurgerDrawing.module.css'
+import classes from './HamburgerDrawing.module.css'
 
 /*
     Required props : 

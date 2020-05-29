@@ -10,10 +10,21 @@
     max-width: 70%;
     height : 100%; 
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     background-color : white; 
 
     transition : transform 0.3s ease-out;
+}
 
+.SideDrawer nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 @media (min-width : 500px)

@@ -4,6 +4,8 @@ import HamburgerHeader from '../../components/hamburgerFolder/HamburgerHeader/Ha
 import BurgerDrawing from '../../components/hamburgerFolder/HamburgerDrawing/HamburgerDrawing'
 import Ingredients from '../../components/hamburgerFolder/Ingredients/Ingredients'
 
+import OrderSummary from '../../components/orderSummaryFolder/OrderSummary/OrderSummary'
+
 import Modal from '../../components/UI/Modal/Modal'
 import Button from '../../components/UI/Button/Button'
 
@@ -79,11 +81,17 @@ class Hamburger extends Component
                 purchase={this.continuePuchase.bind(this)}
             />
         */
+       const orderSummaryComponent = this.state.loading ? null : 
+            <OrderSummary 
+                ingredients={this.state.ingredients} 
+                price={this.state.price} 
+                cancel={this.modalHandle.bind(this)} //reste le purchase 
+            />
 
         return(
             <div className="Hamburger">
                 <Modal visible={this.state.purchasing} hide={this.modalHandle.bind(this)}>
-
+                    {orderSummaryComponent}
                 </Modal>
                 <HamburgerHeader price={this.state.price}/>
                 <BurgerDrawing ingredients={this.state.composition}/>

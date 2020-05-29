@@ -4,6 +4,12 @@ import React from 'react'
 import OrderSummaryHeader from '../OrderSummaryHeader/OrderSummaryHeader'
 import OrderSummaryFooter from '../OrderSummaryFooter/OrderSummaryFooter'
 
+/*
+    Required props 
+    -> ingredients 
+    -> price 
+*/
+
 const OrderSummary = props => {
     
     const ingredientComponents = props.ingredients.map(ingredient => 
@@ -13,10 +19,11 @@ const OrderSummary = props => {
         <section> 
             <OrderSummaryHeader/>
             {ingredientComponents}
-            <OrderSummaryFooter/>
+            <OrderSummaryFooter cancel={props.cancel} price={props.price}/> 
         </section>
     )
 }
 
 export default OrderSummary
 
+// <OrderSummaryFooter/>

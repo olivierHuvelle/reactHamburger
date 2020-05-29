@@ -12,7 +12,7 @@ import Button from '../../UI/Button/Button'
 
 const OrderSummaryFooter = props => (
     <footer>
-        <Button type="Danger" click={()=>{props.cancel(false)}}>Annuler</Button>
+        <Button type="Danger" click={()=>{props.cancel(true)}}>Annuler</Button>
         <span>{props.price.toFixed(2)} $</span>
         <Button type="Success" click={()=>{props.purchase()}}>Continuer</Button>
     </footer>

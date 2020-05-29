@@ -19,7 +19,8 @@ class Hamburger extends Component
         price : 0, 
         composition : [],
         purchasable : false, 
-        purchasing : false
+        purchasing : true, 
+        loading : false,
     }
 
     ingredientCountHandler = (ingredientName, direction) => {
@@ -63,6 +64,10 @@ class Hamburger extends Component
         this.state.purchasable && !hide ? this.setState({purchasing : true}) : this.setState({purchasing : false})
     }
 
+    purchaseHandler = () => {
+        this.setState({ purchasing : true }) 
+    }
+
     render()
     {
         /*
@@ -77,7 +82,9 @@ class Hamburger extends Component
 
         return(
             <div className="Hamburger">
-                
+                <Modal visible={this.state.purchasing} hide={this.modalHandle.bind(this)}>
+
+                </Modal>
                 <HamburgerHeader price={this.state.price}/>
                 <BurgerDrawing ingredients={this.state.composition}/>
                 <Ingredients ingredients={this.state.ingredients} changeCount={this.ingredientCountHandler.bind(this)}/>

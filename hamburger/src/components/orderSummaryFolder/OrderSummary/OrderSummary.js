@@ -1,5 +1,5 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types' -> ajouter dans second temps 
 
 import OrderSummaryHeader from '../OrderSummaryHeader/OrderSummaryHeader'
 import OrderSummaryFooter from '../OrderSummaryFooter/OrderSummaryFooter'

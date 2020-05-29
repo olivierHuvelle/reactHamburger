@@ -7,7 +7,7 @@ class App extends Component {
   render(){
     return(
       <Layout>
-        Quelque chose de particulier
+        Quelque chose de particulier ajouter ici le composant hamburger dans peu de temps 
       </Layout>
     )
   }

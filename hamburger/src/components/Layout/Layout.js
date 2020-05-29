@@ -8,7 +8,7 @@ const Layout = props => (
         <header>
             Here some stuff 
         </header>
-        <main>
+        <main className={classes.Main}>
             {props.children}
         </main>
     </Aux>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from '../../axios-orders'
 
 import HamburgerHeader from '../../components/hamburgerFolder/HamburgerHeader/HamburgerHeader'
 import BurgerDrawing from '../../components/hamburgerFolder/HamburgerDrawing/HamburgerDrawing'
@@ -72,6 +73,27 @@ class Hamburger extends Component
 
     purchaseContinueHandler = () => {
         console.log('On continue l achat')
+        const shopping = this.state.ingredients.map(ingredient => ({
+            name : ingredient.name, 
+            count : ingredient.count, 
+        }))
+        shopping.push(
+            {
+                customer :{
+                    name : 'Olivier', 
+                    adress : {
+                        street : 'Rue due djzeidjoze', 
+                        zipCode : '1400', 
+                        country : 'Belgium', 
+                    }, 
+                    email : 'bidon@test.bidule', 
+                    deliveryMethod : 'fastest',
+                }
+            })
+        shopping.push({ bill : this.state.price})
+
+        axios.post('/orders.json', shopping)
+            .then(response => console.log(response))
     }
 
     render()

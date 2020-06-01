@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './Button.module.css'
 
 /*
@@ -17,3 +18,11 @@ const Button = props =>
     </button>
 
 export default Button
+
+Button.propTypes = {
+    type : PropTypes.string, 
+    click : PropTypes.func, 
+    disabled : PropTypes.func
+}
+
+

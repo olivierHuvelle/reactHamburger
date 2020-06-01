@@ -19,10 +19,11 @@ const OrderSummary = props => {
         <section> 
             <OrderSummaryHeader/>
             {ingredientComponents}
-            <OrderSummaryFooter cancel={props.cancel} price={props.price}/> 
+            <OrderSummaryFooter cancel={props.cancel} price={props.price} purchase={props.purchase}/> 
         </section>
     )
 }
+
 
 export default OrderSummary
 

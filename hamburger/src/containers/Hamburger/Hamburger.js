@@ -70,6 +70,10 @@ class Hamburger extends Component
         this.setState({ purchasing : true }) 
     }
 
+    purchaseContinueHandler = () => {
+        console.log('On continue l achat')
+    }
+
     render()
     {
        const orderSummaryComponent = this.state.loading ? null : 
@@ -77,6 +81,7 @@ class Hamburger extends Component
                 ingredients={this.state.ingredients} 
                 price={this.state.price} 
                 cancel={this.modalHandle.bind(this)} //reste le purchase 
+                purchase={this.purchaseContinueHandler.bind(this)}
             />
 
         return(

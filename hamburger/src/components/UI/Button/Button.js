@@ -22,7 +22,7 @@ export default Button
 Button.propTypes = {
     type : PropTypes.string, 
     click : PropTypes.func, 
-    disabled : PropTypes.func
+    disabled : PropTypes.bool
 }
 
 

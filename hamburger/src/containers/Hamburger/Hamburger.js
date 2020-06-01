@@ -11,21 +11,28 @@ import OrderSummary from '../../components/orderSummaryFolder/OrderSummary/Order
 import Modal from '../../components/UI/Modal/Modal'
 import Button from '../../components/UI/Button/Button'
 import Spinner from '../../components/UI/Spinner/Spinner'
+import Aux from '../../hoc/Aux'
 
 class Hamburger extends Component
 {
     state = {
-        ingredients : [ //à refactorer dans un second temps pour aller fetch les prix et ensuite fusionner 
-            {name : 'Salad', price : 0.5, count : 0, priceTotal : 0}, 
-            {name : 'Bacon', price : 2.5, count : 0, priceTotal : 0}, 
-            {name : 'Cheese', price : 1.5, count : 0, priceTotal : 0},
-            {name : 'Meat', price : 1.2, count : 0, priceTotal : 0},
-        ], 
+        ingredients : null, 
+        ingredientInformations : null,
         price : 0, 
         composition : [],
         purchasable : false, 
         purchasing : false, 
         loading : false,
+    }
+
+    componentDidMount() {
+        axios.get('/ingredients.json')
+            .then(response => {
+                const ingredients = Object.entries(response.data).map
+                    (ingredient => ({ name : ingredient[0], price : ingredient[1], count : 0, priceTotal : 0}) )
+                this.setState({ingredients : ingredients})
+            })
+       
     }
 
     ingredientCountHandler = (ingredientName, direction) => {
@@ -106,15 +113,19 @@ class Hamburger extends Component
                 cancel={this.modalHandle.bind(this)} //reste le purchase 
                 purchase={this.purchaseContinueHandler.bind(this)}
             />
+        const burgerDisplayComponent = !this.state.ingredients ? <Spinner/> : 
+            <Aux>
+                <HamburgerHeader price={this.state.price}/>
+                <BurgerDrawing ingredients={this.state.composition}/>
+                <Ingredients ingredients={this.state.ingredients} changeCount={this.ingredientCountHandler.bind(this)}/>
+            </Aux>
 
         return(
             <div className="Hamburger">
                 <Modal visible={this.state.purchasing} hide={this.modalHandle.bind(this)}>
                     {orderSummaryComponent}
                 </Modal>
-                <HamburgerHeader price={this.state.price}/>
-                <BurgerDrawing ingredients={this.state.composition}/>
-                <Ingredients ingredients={this.state.ingredients} changeCount={this.ingredientCountHandler.bind(this)}/>
+                {burgerDisplayComponent}
                 <Button type="Success" disabled={!this.state.purchasable} click={this.purchaseHandler.bind(this)}>Acheter</Button>
             </div>
         )

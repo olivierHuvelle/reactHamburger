@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from '../../axios-orders'
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 import HamburgerHeader from '../../components/hamburgerFolder/HamburgerHeader/HamburgerHeader'
 import BurgerDrawing from '../../components/hamburgerFolder/HamburgerDrawing/HamburgerDrawing'
@@ -120,4 +121,4 @@ class Hamburger extends Component
     }
 }
 
-export default Hamburger 
+export default withErrorHandler(Hamburger, axios) 

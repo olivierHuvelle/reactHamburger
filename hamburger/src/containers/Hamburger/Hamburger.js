@@ -9,6 +9,7 @@ import OrderSummary from '../../components/orderSummaryFolder/OrderSummary/Order
 
 import Modal from '../../components/UI/Modal/Modal'
 import Button from '../../components/UI/Button/Button'
+import Spinner from '../../components/UI/Spinner/Spinner'
 
 class Hamburger extends Component
 {
@@ -72,33 +73,32 @@ class Hamburger extends Component
     }
 
     purchaseContinueHandler = () => {
-        console.log('On continue l achat')
-        const shopping = this.state.ingredients.map(ingredient => ({
-            name : ingredient.name, 
-            count : ingredient.count, 
-        }))
-        shopping.push(
-            {
-                customer :{
-                    name : 'Olivier', 
-                    adress : {
-                        street : 'Rue due djzeidjoze', 
-                        zipCode : '1400', 
-                        country : 'Belgium', 
-                    }, 
-                    email : 'bidon@test.bidule', 
-                    deliveryMethod : 'fastest',
-                }
-            })
-        shopping.push({ bill : this.state.price})
-
+        this.setState({loading : true}) //start loading 
+        const shopping = {
+            ingredients : this.state.ingredients.map(ingredient => ({
+                name : ingredient.name, 
+                count : ingredient.count
+                })), 
+            bill : this.state.price, 
+            customer : {
+                name : 'Olivier', 
+                adress : {
+                    street : 'Rue due djzeidjoze', 
+                    zipCode : '1400', 
+                    country : 'Belgium', 
+                }, 
+                email : 'bidon@test.bidule', 
+                deliveryMethod : 'fastest',
+            }
+        }
         axios.post('/orders.json', shopping)
-            .then(response => console.log(response))
+            .then(response => this.setState({loading : false, purchasing : false})) //stops loading 
+            .catch(e => this.setState({ loading : false, purchasing : false}))
     }
 
     render()
     {
-       const orderSummaryComponent = this.state.loading ? null : 
+       const orderSummaryComponent = this.state.loading ? <Spinner/> : 
             <OrderSummary 
                 ingredients={this.state.ingredients} 
                 price={this.state.price} 
@@ -121,7 +121,3 @@ class Hamburger extends Component
 }
 
 export default Hamburger 
-
-
-//<button disabled={!this.state.purchasable} onClick={()=>{this.modalHandle(true)}}>Acheter</button>
-// purchase={this.continuePuchase.bind(this)}

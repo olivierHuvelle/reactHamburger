@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './Backdrop.module.css'
 
 /*
@@ -14,4 +15,7 @@ const Backdrop = props => {
 
 export default Backdrop
 
-
+Backdrop.propTypes = {
+    visible : PropTypes.bool, 
+    hide : PropTypes.func
+}

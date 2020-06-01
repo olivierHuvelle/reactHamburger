@@ -1,8 +1,14 @@
 import React from 'react'
+import classes from './DrawerToggle.module.css'
+
 
 const DrawerToggle = props => {
     return(
-        <div onClick={() => {props.toggled()}}>Menu</div> //vérifier le nom 
+        <div className={classes.DrawerToggle} onClick={() => {props.toggled()}}>
+           <div></div>
+           <div></div>
+           <div></div>
+        </div> //vérifier le nom boh sinon pas intéret juste du css on ne peut plus basique 
     )
 }
 

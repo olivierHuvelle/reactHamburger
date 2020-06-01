@@ -3,15 +3,19 @@ import classes from './Toolbar.module.css'
 
 import Logo from '../../Logo/Logo'
 import NavigationItems from '../../Navigation/NavigationItems/NavigationItems'
+import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle'
+
+//DrawerToggle
 
 const Toolbar = props => (
     <header className={classes.Toolbar}>
-        <div>Menu</div>
+        <DrawerToggle toggled={props.toggled}/>
         <Logo className={classes.DesktopOnly}/>
         <nav className={classes.DesktopOnly}>
             <NavigationItems/>
         </nav>
     </header>
 )
+
 
 export default Toolbar 

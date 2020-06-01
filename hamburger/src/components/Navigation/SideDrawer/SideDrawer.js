@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classes from './SideDrawer.module.css'
 
 import Logo from '../../Logo/Logo'
@@ -28,5 +29,9 @@ const SideDrawer = props => {
     ) 
 }
 
+SideDrawer.propTypes = {
+    visible : PropTypes.bool, 
+    hide : PropTypes.func
+}
 
 export default SideDrawer

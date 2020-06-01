@@ -32,7 +32,7 @@ class Hamburger extends Component
                     (ingredient => ({ name : ingredient[0], price : ingredient[1], count : 0, priceTotal : 0}) )
                 this.setState({ingredients : ingredients})
             })
-       
+            .catch(e => console.log(e))
     }
 
     ingredientCountHandler = (ingredientName, direction) => {

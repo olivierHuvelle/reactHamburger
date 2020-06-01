@@ -10,18 +10,20 @@ const withErrorHandler = (WrappedComponent, axios) => {
     
     return class extends Component{
 
-        state = {
-            error : null 
-        }
-
-        componentDidMount(){
+        constructor(props){
+            super(props)
+            this.state = {
+                error : null
+            }
             axios.interceptors.request.use(request => {
-                this.setState({error : null})
+                this.state.error = null
                 return request
             })
             axios.interceptors.response.use(
                 response => response, 
-                error => this.setState({error : error})
+                error => {
+                    this.state.error = error
+                }
             )
         }
 
